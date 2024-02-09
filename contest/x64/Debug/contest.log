@@ -1,0 +1,5 @@
+﻿  2.cpp
+  contest.cpp
+  Создание кода...
+contest.obj : error LNK2005: main уже определен в 2.obj
+C:\Users\artem\source\repos\aisd\AiSD\x64\Debug\contest.exe : fatal error LNK1169: обнаружен многократно определенный символ - один или более
