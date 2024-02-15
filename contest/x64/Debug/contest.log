@@ -1,5 +1,2 @@
-﻿  2.cpp
-  contest.cpp
-  Создание кода...
-contest.obj : error LNK2005: main уже определен в 2.obj
-C:\Users\artem\source\repos\aisd\AiSD\x64\Debug\contest.exe : fatal error LNK1169: обнаружен многократно определенный символ - один или более
+﻿C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(531,5): warning MSB8028: промежуточный каталог (x64\Debug\) содержит файлы, которые используются совместно с другим проектом (contest.vcxproj).  Это может привести к ошибкам очистки и перестроения.
+  contest.vcxproj -> C:\Users\artem\source\repos\aisd\AiSD\x64\Debug\1.exe
