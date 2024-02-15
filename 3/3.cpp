@@ -1,50 +1,56 @@
 ﻿#include <iostream>
+#include <stack>
 #include <vector>
-#include <string>
+#include <map>
 using namespace std;
 
 int main()
 {
-	vector<string> values;
-	vector<string> ps;
+	map<string, stack<string>> values;
+	stack<vector<string>> cur_old;
+	vector<string> current;
 	string buf;
 	while (cin >> buf) {
 		if (buf == "{") {
-			values.push_back("{");
-			ps.push_back("{");
+			cur_old.push(current);
+			current.clear();
 		}
 		else if (buf == "}") {
-			while (values.back() != "{") {
-				values.pop_back();
+			for (int i = 0; i < current.size();i++) {
+				auto curr_stack = values.find(current[i]);
+				curr_stack->second.pop();
 			}
-			values.pop_back();
-			while (ps.back() != "{") {
-				ps.pop_back();
+			if (cur_old.size() != 0) {
+				current = cur_old.top();
+				cur_old.pop();
 			}
-			ps.pop_back();
 		}
 		else {
-			int position = buf.find_first_of("=");
+			size_t position = buf.find_first_of("=");
 			string p = buf.substr(0, position);
 			string n = buf.substr(position + 1);
+			current.push_back(p);
+			if (values.find(p) == values.end()) {
+				stack<string> temp;
+				values[p] = temp;
+			}
 			if (isdigit(n[0]) || n[0] == '-') {
-				ps.push_back(p);
-				values.push_back(n);
+				values[p].push(n);
 			}
 			else {
-				int i = ps.size() - 1;
-				while (i >= 0 && ps[i] != n) {
-					i--;
-				}
-				if (i < 0) {
-					cout << "0\n";
-					ps.push_back(p);
-					values.push_back("0");
+				if (values.find(n) != values.end()) {
+					if (values[n].size() > 0) {
+						values[p].push(values[n].top());
+						cout << values[n].top() << '\n';
+					}
+					else {
+						values[p].push("0");
+						cout << "0\n";
+					}
 				}
 				else {
-					ps.push_back(p);
-					values.push_back(values[i]);
-					cout << values[i] << '\n';
+					values[p].push("0");
+					cout << "0\n";
 				}
 			}
 		}
