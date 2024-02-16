@@ -5,30 +5,28 @@ using namespace std;
 
 int main()
 {
-	int N, K;
+	int N, K,min;
 	cin >> N; cin >> K;
-	vector<int> x(N), dx, dx_sorted;
+	min = 2147483647;
+	vector<int> x(N), dx;
 	for (size_t i = 0; i < N; ++i) {
 		cin >> x[i];
 		if (i != 0) {
 			dx.push_back(x[i] - x[i - 1]);
-			dx_sorted.push_back(x[i] - x[i - 1]);
+			if (dx[i - 1] < min) {
+				min = dx[i - 1];
+			}
 		}
 	}
-	sort(dx_sorted.begin(), dx_sorted.end());
-	for (int i = 0; i < K; i++) {
-		for (int j = 0; j < N - 1; j++) {
-			if (dx_sorted[i] == dx[j]) {
-				if (j != N - 1) {
-					dx[j + 1] += dx[j];
-					dx.erase(dx.begin() + j);
-				}
-				else {
-					dx.pop_back();
-				}
+	for (int i = 0; i < N-K; i++) {
+		for (int j = 0; j < dx.size(); j++) {
+			if (min == dx[j]) {
+				dx[j + 1] += dx[j];
+				dx.erase(dx.begin()+j);
+				min = *min_element(dx.begin(),dx.end());
 				break;
 			}
 		}
 	}
-
+	cout << min;
 }
