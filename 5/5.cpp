@@ -1,6 +1,5 @@
 ﻿#include <iostream>
 #include <vector>
-#include <algorithm>
 using namespace std;
 
 int main()
@@ -30,3 +29,7 @@ int main()
 	}
 	cout << min;
 }
+/*
+3 5
+1 2 3 5 9
+*/
