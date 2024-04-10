@@ -17,6 +17,7 @@ bool customComparator(const string& a, const string& b) {
             return false;
         }
     }
+    return false;
 }
 
 int main() {
