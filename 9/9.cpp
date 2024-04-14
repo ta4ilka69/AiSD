@@ -1,11 +1,10 @@
 ﻿#include <iostream>
 #include <map>
 #include <vector>
-#include <set>
+#include <unordered_set>
 #include <list>
 #define INT_MAX 2147483647
 using namespace std;
-
 struct ReverseCompare {
 	bool operator()(const int& a, const int& b) const {
 		return a > b;
@@ -13,12 +12,13 @@ struct ReverseCompare {
 };
 int main()
 {
+	ios_base::sync_with_stdio(0); cin.tie(0); cout.tie(0);
 	int n, k, p;
 	cin >> n >> k >> p;
 	int s = k;
 	vector <list<int>> pos(n);
 	vector<int> values(p);
-	set<int> curr;
+	unordered_set<int> curr;
 	for (int i = 0; i < p; i++)
 	{
 		int x;
